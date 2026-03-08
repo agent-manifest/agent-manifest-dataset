@@ -1,0 +1,47 @@
+name: Register Agent Manifest
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  register:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Extract JSON from issue
+        id: extract
+        run: |
+          BODY="${{ github.event.issue.body }}"
+          JSON=$(echo "$BODY" | sed -n '/```json/,/```/p' | sed '1d;$d')
+          echo "$JSON" > manifest.json
+
+      - name: Get date
+        id: date
+        run: |
+          YEAR=$(date +%Y)
+          MONTH=$(date +%m)
+          echo "year=$YEAR" >> $GITHUB_OUTPUT
+          echo "month=$MONTH" >> $GITHUB_OUTPUT
+
+      - name: Get identity
+        id: identity
+        run: |
+          NAME=$(cat manifest.json | jq -r '.identity')
+          echo "name=$NAME" >> $GITHUB_OUTPUT
+
+      - name: Move manifest
+        run: |
+          mkdir -p manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}
+          mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.identity.outputs.name }}.json
+
+      - name: Commit manifest
+        run: |
+          git config --global user.name "manifest-bot"
+          git config --global user.email "bot@agent-manifest"
+          git add .
+          git commit -m "auto-register manifest"
+          git push
