@@ -109,6 +109,9 @@ jobs:
           registry = {
               "registry_version": "1.0",
               "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+              "registry_type": "agent-manifest-public-registry",
+              "source_repository": "https://github.com/hernancapucci/agent-manifest-dataset",
+              "total_agents": len(manifests),
               "agents": manifests
           }
 
