@@ -48,7 +48,7 @@ jobs:
       - name: Get identity
         id: identity
         run: |
-          NAME=$(python3 -c "import json; print(json.load(open('manifest.json', encoding='utf-8'))['identity'])")
+          NAME=$(python3 -c "import json; print(json.load(open('manifest.json'))['identity'])")
           echo "name=$NAME" >> $GITHUB_OUTPUT
 
       - name: Move manifest
@@ -61,5 +61,5 @@ jobs:
           git config user.name "manifest-bot"
           git config user.email "bot@agent-manifest.local"
           git add .
-          git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes to commit"
+          git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes"
           git push
