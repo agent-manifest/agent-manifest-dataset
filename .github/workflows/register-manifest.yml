@@ -39,13 +39,36 @@ jobs:
               f.write(json_text)
           PY
 
-      - name: Validate basic JSON syntax
+      - name: Validate manifest structure
         run: |
           python3 <<'PY'
           import json
+
+          required_fields = [
+              "$schema",
+              "specVersion",
+              "identity",
+              "purpose",
+              "capabilities",
+              "boundaries",
+              "autonomy_level",
+              "declaration_date"
+          ]
+
           with open("manifest.json", encoding="utf-8") as f:
-              json.load(f)
-          print("JSON syntax OK")
+              data = json.load(f)
+
+          missing = [field for field in required_fields if field not in data]
+          if missing:
+              raise SystemExit("Missing required fields: " + ", ".join(missing))
+
+          if not isinstance(data["capabilities"], list):
+              raise SystemExit("Field 'capabilities' must be a list.")
+
+          if not isinstance(data["boundaries"], list):
+              raise SystemExit("Field 'boundaries' must be a list.")
+
+          print("Manifest structure OK")
           PY
 
       - name: Get date
