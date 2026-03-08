@@ -89,10 +89,37 @@ jobs:
           mkdir -p manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}
           mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.identity.outputs.name }}.json
 
-      - name: Commit manifest
+      - name: Generate registry.json
+        run: |
+          python3 <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+
+          manifests = []
+
+          for root, dirs, files in os.walk("manifests"):
+              for file in files:
+                  if file.endswith(".json"):
+                      path = os.path.join(root, file).replace("\\", "/")
+                      manifests.append(path)
+
+          manifests.sort()
+
+          registry = {
+              "registry_version": "1.0",
+              "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+              "agents": manifests
+          }
+
+          with open("registry.json", "w", encoding="utf-8") as f:
+              json.dump(registry, f, indent=2)
+          PY
+
+      - name: Commit manifest and registry
         run: |
           git config user.name "manifest-bot"
           git config user.email "bot@agent-manifest.local"
-          git add .
+          git add manifests registry.json
           git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes"
           git push
