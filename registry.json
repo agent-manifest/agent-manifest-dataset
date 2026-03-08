@@ -1,8 +1,12 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-08T12:25:27.879716Z",
+  "generated_at": "2026-03-08T12:40:42.575515Z",
+  "registry_type": "agent-manifest-public-registry",
+  "source_repository": "https://github.com/hernancapucci/agent-manifest-dataset",
+  "total_agents": 6,
   "agents": [
     "manifests/2026/03/auto-test-agent-clean.json",
+    "manifests/2026/03/canonical-test-agent.json",
     "manifests/2026/03/registry-test-agent.json",
     "manifests/2026/03/test-agent.json",
     "manifests/2026/03/test-registry.json",
