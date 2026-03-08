@@ -1,0 +1,54 @@
+name: Build Agent Registry
+
+on:
+  push:
+    paths:
+      - "manifests/**"
+
+jobs:
+  build-registry:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Generate registry.json
+        run: |
+          python3 <<'PY'
+          import json
+          import os
+          from datetime import datetime
+
+          manifests = []
+
+          for root, dirs, files in os.walk("manifests"):
+              for file in files:
+                  if file.endswith(".json"):
+                      path = os.path.join(root, file)
+                      manifests.append(path)
+
+          manifests.sort()
+
+          registry = {
+              "registry_version": "1.0",
+              "generated_at": datetime.utcnow().isoformat() + "Z",
+              "agents": manifests
+          }
+
+          with open("registry.json", "w") as f:
+              json.dump(registry, f, indent=2)
+
+          print("Registry generated with", len(manifests), "agents")
+          PY
+
+      - name: Commit registry
+        run: |
+          git config user.name "registry-bot"
+          git config user.email "bot@agent-manifest.local"
+          git add registry.json
+          git commit -m "update agent registry" || echo "No changes"
+          git push
