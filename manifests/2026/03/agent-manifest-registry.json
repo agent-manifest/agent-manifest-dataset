@@ -1,0 +1,18 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "specVersion": "1.0.0",
+  "identity": "agent-manifest-registry",
+  "purpose": "Governance and discovery layer for the Agent Manifest public registry ecosystem",
+  "capabilities": [
+    "registry-governance",
+    "registry-discovery",
+    "federation-rules",
+    "discovery-endpoint-publication"
+  ],
+  "boundaries": [
+    "no-agent-execution",
+    "no-autonomous-enforcement"
+  ],
+  "autonomy_level": "supervised",
+  "declaration_date": "2026-03-08"
+}

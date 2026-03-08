@@ -1,15 +1,21 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-08T22:56:44.901260Z",
+  "generated_at": "2026-03-08T23:19:26.584228Z",
   "registry_type": "agent-manifest-public-registry",
   "source_repository": "https://github.com/hernancapucci/agent-manifest-dataset",
-  "total_agents": 8,
+  "total_agents": 9,
   "agents": [
     {
       "identity": "agent-manifest-ambassador",
       "declaration_date": "2026-03-08",
       "manifest_path": "manifests/2026/03/agent-manifest-ambassador.json",
       "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-ambassador.json"
+    },
+    {
+      "identity": "agent-manifest-registry",
+      "declaration_date": "2026-03-08",
+      "manifest_path": "manifests/2026/03/agent-manifest-registry.json",
+      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-registry.json"
     },
     {
       "identity": "auto-test-agent-clean",
