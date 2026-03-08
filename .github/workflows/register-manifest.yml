@@ -9,28 +9,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Extract JSON from issue
-        id: extract
         run: |
-          BODY="${{ github.event.issue.body }}"
-          JSON=$(echo "$BODY" | sed -n '/```json/,/```/p' | sed '1d;$d')
-          echo "$JSON" > manifest.json
+          echo "${{ github.event.issue.body }}" > issue_body.txt
+          sed -n '/```json/,/```/p' issue_body.txt | sed '1d;$d' > manifest.json
+
+      - name: Show extracted JSON
+        run: cat manifest.json
 
       - name: Get date
         id: date
         run: |
-          YEAR=$(date +%Y)
-          MONTH=$(date +%m)
-          echo "year=$YEAR" >> $GITHUB_OUTPUT
-          echo "month=$MONTH" >> $GITHUB_OUTPUT
+          echo "year=$(date +%Y)" >> $GITHUB_OUTPUT
+          echo "month=$(date +%m)" >> $GITHUB_OUTPUT
 
       - name: Get identity
         id: identity
         run: |
-          NAME=$(cat manifest.json | jq -r '.identity')
+          NAME=$(grep '"identity"' manifest.json | head -1 | sed 's/.*: "\(.*\)".*/\1/')
           echo "name=$NAME" >> $GITHUB_OUTPUT
 
       - name: Move manifest
