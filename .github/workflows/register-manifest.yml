@@ -8,14 +8,33 @@ jobs:
   register:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+      issues: write
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Extract JSON from issue
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
         run: |
-          echo "${{ github.event.issue.body }}" > issue_body.txt
-          sed -n '/```json/,/```/p' issue_body.txt | sed '1d;$d' > manifest.json
+          python3 <<'PY'
+          import os
+          import re
+
+          body = os.environ["ISSUE_BODY"]
+
+          match = re.search(r"```json\s*(.*?)\s*```", body, re.DOTALL)
+          if not match:
+              raise SystemExit("No JSON block found in issue body.")
+
+          json_text = match.group(1).strip()
+
+          with open("manifest.json", "w", encoding="utf-8") as f:
+              f.write(json_text)
+          PY
 
       - name: Show extracted JSON
         run: cat manifest.json
@@ -29,7 +48,7 @@ jobs:
       - name: Get identity
         id: identity
         run: |
-          NAME=$(grep '"identity"' manifest.json | head -1 | sed 's/.*: "\(.*\)".*/\1/')
+          NAME=$(python3 -c "import json; print(json.load(open('manifest.json', encoding='utf-8'))['identity'])")
           echo "name=$NAME" >> $GITHUB_OUTPUT
 
       - name: Move manifest
@@ -39,8 +58,8 @@ jobs:
 
       - name: Commit manifest
         run: |
-          git config --global user.name "manifest-bot"
-          git config --global user.email "bot@agent-manifest"
+          git config user.name "manifest-bot"
+          git config user.email "bot@agent-manifest.local"
           git add .
-          git commit -m "auto-register manifest"
+          git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes to commit"
           git push
