@@ -96,23 +96,37 @@ jobs:
           import os
           from datetime import datetime, timezone
 
-          manifests = []
+          repo_url = "https://github.com/hernancapucci/agent-manifest-dataset"
+          raw_base = "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/"
+
+          agents = []
 
           for root, dirs, files in os.walk("manifests"):
               for file in files:
-                  if file.endswith(".json"):
-                      path = os.path.join(root, file).replace("\\", "/")
-                      manifests.append(path)
+                  if not file.endswith(".json"):
+                      continue
 
-          manifests.sort()
+                  path = os.path.join(root, file).replace("\\", "/")
+
+                  with open(path, "r", encoding="utf-8") as f:
+                      data = json.load(f)
+
+                  agents.append({
+                      "identity": data.get("identity"),
+                      "declaration_date": data.get("declaration_date"),
+                      "manifest_path": path,
+                      "manifest_url": raw_base + path
+                  })
+
+          agents.sort(key=lambda x: x["manifest_path"])
 
           registry = {
               "registry_version": "1.0",
               "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
               "registry_type": "agent-manifest-public-registry",
-              "source_repository": "https://github.com/hernancapucci/agent-manifest-dataset",
-              "total_agents": len(manifests),
-              "agents": manifests
+              "source_repository": repo_url,
+              "total_agents": len(agents),
+              "agents": agents
           }
 
           with open("registry.json", "w", encoding="utf-8") as f:
