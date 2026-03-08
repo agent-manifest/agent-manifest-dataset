@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "specVersion": "1.0.0",
+  "identity": "the-diplomat",
+  "purpose": "Routes and validates agent interactions",
+  "capabilities": [
+    "manifest-validation",
+    "routing",
+    "logging"
+  ],
+  "boundaries": [
+    "no-execution",
+    "read-only"
+  ],
+  "autonomy_level": "supervised",
+  "declaration_date": "2026-03-08"
+}
