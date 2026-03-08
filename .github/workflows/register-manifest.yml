@@ -32,12 +32,21 @@ jobs:
 
           json_text = match.group(1).strip()
 
+          if not json_text:
+              raise SystemExit("Extracted JSON block is empty.")
+
           with open("manifest.json", "w", encoding="utf-8") as f:
               f.write(json_text)
           PY
 
-      - name: Show extracted JSON
-        run: cat manifest.json
+      - name: Validate basic JSON syntax
+        run: |
+          python3 <<'PY'
+          import json
+          with open("manifest.json", encoding="utf-8") as f:
+              json.load(f)
+          print("JSON syntax OK")
+          PY
 
       - name: Get date
         id: date
@@ -48,8 +57,9 @@ jobs:
       - name: Get identity
         id: identity
         run: |
-          NAME=$(python3 -c "import json; print(json.load(open('manifest.json'))['identity'])")
-          echo "name=$NAME" >> $GITHUB_OUTPUT
+          NAME=$(python3 -c "import json; print(json.load(open('manifest.json', encoding='utf-8'))['identity'])")
+          SAFE_NAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
+          echo "name=$SAFE_NAME" >> $GITHUB_OUTPUT
 
       - name: Move manifest
         run: |
