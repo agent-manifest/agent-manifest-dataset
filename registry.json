@@ -1,9 +1,9 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-09T09:30:54.649802Z",
+  "generated_at": "2026-03-09T09:40:29.254042Z",
   "registry_type": "agent-manifest-public-registry",
   "source_repository": "https://github.com/hernancapucci/agent-manifest-dataset",
-  "total_agents": 11,
+  "total_agents": 12,
   "agents": [
     {
       "identity": "agent-manifest-ambassador",
@@ -46,6 +46,12 @@
       "declaration_date": "2026-03-08",
       "manifest_path": "manifests/2026/03/discovery-test-agent.json",
       "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/discovery-test-agent.json"
+    },
+    {
+      "identity": "knowledge-lookup-agent",
+      "declaration_date": "2026-03-09",
+      "manifest_path": "manifests/2026/03/knowledge-lookup-agent.json",
+      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/knowledge-lookup-agent.json"
     },
     {
       "identity": "registry-test-agent",

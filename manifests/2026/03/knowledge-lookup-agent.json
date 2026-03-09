@@ -1,0 +1,15 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "specVersion": "1.0.0",
+  "identity": "knowledge-lookup-agent",
+  "purpose": "Retrieves structured information from approved public knowledge sources and returns concise responses to user queries.",
+  "capabilities": [
+    "knowledge-retrieval\nsource-lookup\nstructured-response-generation"
+  ],
+  "boundaries": [
+    "no-autonomous-decisions",
+    "no-external-execution"
+  ],
+  "autonomy_level": "supervised",
+  "declaration_date": "2026-03-09"
+}
