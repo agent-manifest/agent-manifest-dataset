@@ -1,0 +1,14 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "specVersion": "1.0.0",
+  "identity": "agent-manifest",
+  "purpose": "Canonical specification authority for the Agent Manifest standard, responsible for publishing the schema, governance model, and reference documentation for declarative AI agent identity.",
+  "capabilities": [
+    "schema-publication\nspecification-governance\nreference-documentation"
+  ],
+  "boundaries": [
+    "no-agent-execution\nno-autonomous-decision-making"
+  ],
+  "autonomy_level": "supervised",
+  "declaration_date": "2026-03-09"
+}
