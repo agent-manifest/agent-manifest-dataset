@@ -1,81 +1,17 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-09T09:40:29.254042Z",
-  "registry_type": "agent-manifest-public-registry",
-  "source_repository": "https://github.com/hernancapucci/agent-manifest-dataset",
-  "total_agents": 12,
+  "generated_at": "2026-03-12T20:06:03.557792Z",
   "agents": [
-    {
-      "identity": "agent-manifest-ambassador",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/agent-manifest-ambassador.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-ambassador.json"
-    },
-    {
-      "identity": "agent-manifest-dataset",
-      "declaration_date": "2026-03-09",
-      "manifest_path": "manifests/2026/03/agent-manifest-dataset.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-dataset.json"
-    },
-    {
-      "identity": "agent-manifest-registry",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/agent-manifest-registry.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-registry.json"
-    },
-    {
-      "identity": "agent-manifest",
-      "declaration_date": "2026-03-09",
-      "manifest_path": "manifests/2026/03/agent-manifest.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/agent-manifest.json"
-    },
-    {
-      "identity": "auto-test-agent-clean",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/auto-test-agent-clean.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/auto-test-agent-clean.json"
-    },
-    {
-      "identity": "canonical-test-agent",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/canonical-test-agent.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/canonical-test-agent.json"
-    },
-    {
-      "identity": "discovery-test-agent",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/discovery-test-agent.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/discovery-test-agent.json"
-    },
-    {
-      "identity": "knowledge-lookup-agent",
-      "declaration_date": "2026-03-09",
-      "manifest_path": "manifests/2026/03/knowledge-lookup-agent.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/knowledge-lookup-agent.json"
-    },
-    {
-      "identity": "registry-test-agent",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/registry-test-agent.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/registry-test-agent.json"
-    },
-    {
-      "identity": "test-agent",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/test-agent.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/test-agent.json"
-    },
-    {
-      "identity": "test-registry",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/test-registry.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/test-registry.json"
-    },
-    {
-      "identity": "the-diplomat",
-      "declaration_date": "2026-03-08",
-      "manifest_path": "manifests/2026/03/the-diplomat.json",
-      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/the-diplomat.json"
-    }
+    "manifests/2026/03/agent-manifest-ambassador.json",
+    "manifests/2026/03/agent-manifest-dataset.json",
+    "manifests/2026/03/agent-manifest-registry.json",
+    "manifests/2026/03/agent-manifest.json",
+    "manifests/2026/03/auto-test-agent-clean.json",
+    "manifests/2026/03/canonical-test-agent.json",
+    "manifests/2026/03/discovery-test-agent.json",
+    "manifests/2026/03/knowledge-lookup-agent.json",
+    "manifests/2026/03/registry-test-agent.json",
+    "manifests/2026/03/test-agent.json",
+    "manifests/2026/03/the-diplomat.json"
   ]
 }
