@@ -51,4 +51,5 @@ jobs:
           git config user.email "bot@agent-manifest.local"
           git add registry.json
           git commit -m "update agent registry" || echo "No changes"
-          git push
+          git pull --rebase origin main
+          git push origin main
