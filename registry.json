@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-13T13:09:09.236Z",
+  "generated_at": "2026-03-13T13:18:17.900Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -13,6 +13,12 @@
       "agent_name": "Test",
       "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/test.json",
       "registered_at": "2026-03-13T13:09:09.236Z"
+    },
+    {
+      "agent_id": "testt",
+      "agent_name": "Testt",
+      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/testt.json",
+      "registered_at": "2026-03-13T13:18:17.900Z"
     }
   ]
 }
