@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "test",
+  "agent_name": "Test",
+  "identity": "Test",
+  "purpose": "Trst",
+  "capabilities": [
+    "Test"
+  ],
+  "boundaries": [
+    "Test"
+  ],
+  "autonomy_level": "fully-autonomous",
+  "declaration_date": "2026-03-13"
+}
