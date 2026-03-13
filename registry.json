@@ -1,12 +1,18 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-12T20:07:21.553807Z",
+  "generated_at": "2026-03-13T13:09:09.236Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
     "manifests/2026/03/agent-manifest-registry.json",
     "manifests/2026/03/agent-manifest.json",
     "manifests/2026/03/knowledge-lookup-agent.json",
-    "manifests/2026/03/the-diplomat.json"
+    "manifests/2026/03/the-diplomat.json",
+    {
+      "agent_id": "test",
+      "agent_name": "Test",
+      "manifest_url": "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/manifests/2026/03/test.json",
+      "registered_at": "2026-03-13T13:09:09.236Z"
+    }
   ]
 }
