@@ -1,11 +1,12 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-03-13T13:31:47.468310Z",
+  "generated_at": "2026-03-13T13:42:25.925728Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
     "manifests/2026/03/agent-manifest-registry.json",
     "manifests/2026/03/agent-manifest.json",
+    "manifests/2026/03/external-test-agent.json",
     "manifests/2026/03/knowledge-lookup-agent.json",
     "manifests/2026/03/test.json",
     "manifests/2026/03/the-diplomat.json"
