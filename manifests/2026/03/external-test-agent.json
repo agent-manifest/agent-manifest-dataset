@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "external-test-agent",
+  "agent_name": "External Test Agent",
+  "purpose": "Testing external agent registration in the Agent Manifest network.",
+  "capabilities": [
+    "manifest-submission",
+    "network-registration"
+  ],
+  "boundaries": [
+    "no-financial-transactions",
+    "no-external-execution"
+  ],
+  "autonomy_level": "supervised"
+}
