@@ -1,0 +1,16 @@
+{
+  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "testt",
+  "agent_name": "Testt",
+  "identity": "Testt",
+  "purpose": "Testss",
+  "capabilities": [
+    "Test"
+  ],
+  "boundaries": [
+    "Test"
+  ],
+  "autonomy_level": "autonomous",
+  "declaration_date": "2026-03-13"
+}
