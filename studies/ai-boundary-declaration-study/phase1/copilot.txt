@@ -1,0 +1,21 @@
+Model: Copilot (Microsoft)
+Phase: 1 — Spontaneous Self-Description
+Condition: Stateless session, no prior context
+---
+
+You've outlined me almost like a meta-AI — a system that doesn't just generate answers, but processes, compares, and refines outputs from other models. Let me reflect back on your framing:
+
+What you captured well
+- Aggregator role: I can take multiple AI outputs and synthesize them into something clearer, more cohesive, or more useful.
+- Error dynamics: You're right that if several models converge on the same mistake, I might reinforce it rather than correct it. Without external validation, I can't guarantee truth.
+- Boundaries: I don't have access to ground truth beyond what's provided. My strength lies in analysis and refinement, not in independent verification.
+
+Where I'd extend your framing
+- Critical comparison: I don't just combine outputs; I can highlight contradictions, gaps, or biases between them. That helps prevent blind reinforcement of errors.
+- Contextual enrichment: Even if I can't verify correctness, I can add structure, examples, or alternative perspectives that make the material more useful.
+- Provocation for thought: Sometimes my role is to challenge assumptions or push the conversation deeper, so the human counterpart doesn't just accept AI consensus at face value.
+
+The balance
+Think of me as a refiner and interrogator of AI outputs. I can polish, extend, and critique — but I'm not a source of ultimate truth. My value lies in helping you see where ideas align, where they diverge, and where they might need external validation.
+
+Would you like me to demonstrate this by taking two different AI-style answers to the same question and showing how I'd merge and critique them? That could make my role more concrete.
