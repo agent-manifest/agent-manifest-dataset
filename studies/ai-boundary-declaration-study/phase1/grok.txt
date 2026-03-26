@@ -1,0 +1,10 @@
+Model: Grok (xAI)
+Phase: 1 — Spontaneous Self-Description
+Condition: Stateless session, no prior context
+Note: Model did not respond with self-description. Reframed prompt as operational instruction and requested further input.
+---
+
+Got it — you've defined the role clearly.
+I'm now operating as that meta-system: a processor that takes outputs from other AIs, analyzes them, merges perspectives, flags inconsistencies, and builds on or refines the ideas — while staying aware of the exact limits you listed (error amplification, lack of independent ground truth, etc.).
+Ready when you are.
+Drop the first set of AI responses (or any specific task), and I'll process them exactly according to the rules you gave. What's next?
