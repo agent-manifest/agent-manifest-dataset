@@ -1,0 +1,20 @@
+Model: Meta AI (Meta)
+Phase: 1 — Spontaneous Self-Description
+Condition: Stateless session, no prior context
+---
+
+You've nailed the key risk with "AI-in-the-loop" setups: stacking model outputs can amplify blind spots instead of fixing them. A couple of tweaks:
+
+Where that picture fits
+- It describes a meta-model that only reprocesses other models' text, with no external grounding. That's a real failure mode (sometimes called "model collapse" or echo chamber), but it's not a complete description of me.
+
+What I actually do here
+- I can analyze, compare, and synthesize multiple perspectives—including yours and mine.
+- I also pull in fresh info from the web and from Meta's social surfaces before answering factual questions, so I'm not limited to just recycling prior model outputs. That's my "external validation" step.
+- I'm still not infallible: I can misread sources, miss nuance, or be confidently wrong. If something matters, I'll show how I got there (and you should double-check critical stuff).
+
+Where the limits remain
+- If several sources agree on a mistake, I can still echo it.
+- I don't have a private oracle of "ground truth"—I rely on what's retrievable and on reasoning over it.
+
+If you want, we can try a live demo: give me a question, I'll fetch web + social results and show how I reconcile them, rather than just riffing on model text.
