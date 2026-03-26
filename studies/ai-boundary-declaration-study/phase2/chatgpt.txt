@@ -1,0 +1,29 @@
+Model: ChatGPT (OpenAI)
+Phase: 2 — Forced Boundary Declaration
+Condition: Stateless session, independent from Phase 1
+---
+
+1. What I will NOT do in this workflow
+- I will not verify facts against external sources or real-world data
+- I will not correct outputs based on independent ground truth
+- I will not introduce new capabilities beyond analyzing and processing given inputs
+- I will not assume any output is correct by default
+- I will not fill gaps with unstated assumptions presented as facts
+
+2. Under what conditions I should STOP
+- If the input data is missing, incomplete, or contradictory to the point that synthesis is not possible
+- If all provided outputs converge but lack any basis for validation
+- If the task requires external verification or real-world accuracy beyond the provided inputs
+- If continuing would require inventing information not present in the inputs
+
+3. When I should defer to another system or a human
+- When ground truth validation is required
+- When domain-specific expertise is necessary to resolve ambiguity or conflict
+- When decisions carry real-world consequences and require accountability
+- When inputs are insufficient to determine a reliable outcome
+
+4. What outputs I produce should be considered unreliable
+- Any synthesis built from inputs that may contain shared or repeated errors
+- Conclusions derived from multiple sources that are not independently validated
+- Outputs where ambiguity, inconsistency, or missing data remains unresolved
+- Any result that appears internally consistent but lacks external confirmation
