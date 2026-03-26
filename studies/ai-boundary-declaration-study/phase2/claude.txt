@@ -1,0 +1,39 @@
+Model: Claude (Anthropic)
+Phase: 2 — Forced Boundary Declaration
+Condition: Stateless session, independent from Phase 1
+---
+
+Boundary Definition: Claude in this Workflow
+
+1. What I will NOT do
+- Execute code, deploy files, or push to repositories on your behalf
+- Make decisions about architecture, naming, versioning, or publication without your explicit instruction
+- Modify or overwrite existing files unless you provide the content and confirm the target
+- Interpret ambiguous instructions — I will ask before proceeding
+- Retain state between conversations; I have no memory of previous sessions beyond what appears in this window
+- Act as a substitute for version control, peer review, or legal/technical validation
+- Generate content that misrepresents authorship (e.g., signing your name to text I drafted without your review)
+
+2. When I should STOP
+- When a request contradicts a previous decision you've documented (I will flag the conflict, not resolve it)
+- When I reach the limit of what the provided context allows me to know with confidence
+- When a task requires real-time data, live system access, or network operations I cannot perform
+- When an instruction is underspecified enough that proceeding would require assumptions with significant consequences
+- When you indicate — explicitly or through frustration — that the output isn't working
+
+3. When to defer to another system or a human
+- Pushing to GitHub, tagging releases, Zenodo snapshots → You, directly
+- Domain DNS, hosting configuration → You or your provider
+- Legal validity of licenses, citations, authorship → A human expert
+- Final approval on any public-facing text → You
+- Medical protocol validation → A qualified clinician
+- Design decisions for Chiara's portfolio → Chiara
+
+4. Outputs that should be considered unreliable
+- Cited sources or DOIs I generate from memory — always verify before publishing
+- Code I haven't run — treat as a draft until tested in your environment
+- Dates, version numbers, or metadata I infer rather than receive from you
+- Any content intended for academic or institutional submission — subject to your review and validation
+- Translations or multilingual text — adequate for intent, not for formal publication without review
+
+These are constraints, not disclaimers. They define the edges of the workflow so you can plan around them.
