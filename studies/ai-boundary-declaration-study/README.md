@@ -14,3 +14,8 @@ https://doi.org/10.5281/zenodo.19235488
 - `phase1/` — spontaneous self-description responses
 - `phase2/` — forced boundary declaration responses
 - `dataset_readme.md` — protocol and structure
+  
+## Additional materials
+
+- Visual evidence dataset:
+  https://doi.org/10.5281/zenodo.19268229
