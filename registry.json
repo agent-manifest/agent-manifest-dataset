@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-05-14T20:38:47.113383Z",
+  "generated_at": "2026-05-14T21:13:01.984014Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -14,6 +14,7 @@
     "manifests/2026/05/post-dataset-transfer.json",
     "manifests/2026/05/post-diplomat-transfer.json",
     "manifests/2026/05/pre-dataset-transfer.json",
-    "manifests/2026/05/pre-diplomat-transfer.json"
+    "manifests/2026/05/pre-diplomat-transfer.json",
+    "manifests/2026/05/vercel-clean-test.json"
   ]
 }
