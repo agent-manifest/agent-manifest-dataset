@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-05-14T19:20:11.258883Z",
+  "generated_at": "2026-05-14T19:37:14.453123Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -10,6 +10,7 @@
     "manifests/2026/03/knowledge-lookup-agent.json",
     "manifests/2026/03/test.json",
     "manifests/2026/03/the-diplomat.json",
-    "manifests/2026/05/migration-preflight.json"
+    "manifests/2026/05/migration-preflight.json",
+    "manifests/2026/05/pre-diplomat-transfer.json"
   ]
 }
