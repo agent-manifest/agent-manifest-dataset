@@ -1,0 +1,6 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "vercel-clean-test",
+  "agent_name": "Vercel Clean Test",
+  "purpose": "Verify clean Vercel env vars and token after reset"
+}
