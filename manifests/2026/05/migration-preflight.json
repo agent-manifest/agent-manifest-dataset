@@ -1,0 +1,6 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "migration-preflight",
+  "agent_name": "Migration Preflight",
+  "purpose": "Verify Diplomat env-var refactor is live and pipeline is intact"
+}
