@@ -3,7 +3,6 @@ name: Manifest submission
 about: Submit a new Agent Manifest to the Diplomat registry
 title: "Manifest submission: "
 labels: manifest-submission
-assignees: hernancapucci
 ---
 
 ## Agent Identity
