@@ -96,8 +96,8 @@ jobs:
           import os
           from datetime import datetime, timezone
 
-          repo_url = "https://github.com/hernancapucci/agent-manifest-dataset"
-          raw_base = "https://raw.githubusercontent.com/hernancapucci/agent-manifest-dataset/main/"
+          repo_url = "https://github.com/agent-manifest/agent-manifest-dataset"
+          raw_base = "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/"
 
           agents = []
 
