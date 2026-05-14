@@ -1,0 +1,6 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "pre-diplomat-transfer",
+  "agent_name": "Pre Diplomat Transfer",
+  "purpose": "Verify Diplomat before repo transfer to org"
+}
