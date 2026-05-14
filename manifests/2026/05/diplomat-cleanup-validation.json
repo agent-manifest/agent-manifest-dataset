@@ -1,0 +1,6 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "diplomat-cleanup-validation",
+  "agent_name": "Diplomat Cleanup Validation",
+  "purpose": "Verify Diplomat still writes after diagnostic cleanup"
+}
