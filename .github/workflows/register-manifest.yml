@@ -45,14 +45,19 @@ jobs:
           import json
 
           required_fields = [
-              "$schema",
-              "specVersion",
-              "identity",
+              "manifest_version",
+              "agent_id",
+              "agent_name",
+              "agent_version",
+              "owner",
               "purpose",
-              "capabilities",
-              "boundaries",
-              "autonomy_level",
-              "declaration_date"
+              "forbidden_actions",
+              "autonomy",
+              "risk_profile",
+              "data_handling",
+              "stopping_authority",
+              "audit_surface",
+              "contact"
           ]
 
           with open("manifest.json", encoding="utf-8") as f:
@@ -60,15 +65,63 @@ jobs:
 
           missing = [field for field in required_fields if field not in data]
           if missing:
-              raise SystemExit("Missing required fields: " + ", ".join(missing))
+              raise SystemExit("Missing required v1.0 field(s): " + ", ".join(missing))
 
-          if not isinstance(data["capabilities"], list):
-              raise SystemExit("Field 'capabilities' must be a list.")
+          if data["manifest_version"] != "1.0":
+              raise SystemExit("manifest_version must be '1.0'")
 
-          if not isinstance(data["boundaries"], list):
-              raise SystemExit("Field 'boundaries' must be a list.")
+          if not isinstance(data["forbidden_actions"], list) or len(data["forbidden_actions"]) == 0:
+              raise SystemExit("forbidden_actions must be a non-empty array")
 
-          print("Manifest structure OK")
+          if not isinstance(data["autonomy"], dict):
+              raise SystemExit("autonomy must be an object")
+          if not isinstance(data["autonomy"].get("level"), int):
+              raise SystemExit("autonomy.level must be an integer")
+          if not (0 <= data["autonomy"]["level"] <= 3):
+              raise SystemExit("autonomy.level must be between 0 and 3")
+
+          if not isinstance(data["purpose"], dict):
+              raise SystemExit("purpose must be an object with primary_code and description")
+          if "primary_code" not in data["purpose"] or "description" not in data["purpose"]:
+              raise SystemExit("purpose must have primary_code and description")
+
+          if not isinstance(data["owner"], dict):
+              raise SystemExit("owner must be an object with type and identifier")
+          if "type" not in data["owner"] or "identifier" not in data["owner"]:
+              raise SystemExit("owner must have type and identifier")
+          if data["owner"]["type"] not in ("individual", "organization", "system"):
+              raise SystemExit("owner.type must be one of: individual, organization, system")
+
+          if not isinstance(data["risk_profile"], dict):
+              raise SystemExit("risk_profile must be an object")
+          if data["risk_profile"].get("level") not in ("low", "medium", "high"):
+              raise SystemExit("risk_profile.level must be one of: low, medium, high")
+
+          if not isinstance(data["data_handling"], dict):
+              raise SystemExit("data_handling must be an object")
+          if not isinstance(data["data_handling"].get("stores_personal_data"), bool):
+              raise SystemExit("data_handling.stores_personal_data must be a boolean")
+
+          if not isinstance(data["stopping_authority"], dict):
+              raise SystemExit("stopping_authority must be an object")
+          if not isinstance(data["stopping_authority"].get("stoppable_by"), list) or len(data["stopping_authority"]["stoppable_by"]) == 0:
+              raise SystemExit("stopping_authority.stoppable_by must be a non-empty array")
+          if not data["stopping_authority"].get("mechanism"):
+              raise SystemExit("stopping_authority.mechanism is required")
+
+          if not isinstance(data["audit_surface"], dict):
+              raise SystemExit("audit_surface must be an object")
+          if data["audit_surface"].get("logging") not in ("none", "basic", "detailed"):
+              raise SystemExit("audit_surface.logging must be one of: none, basic, detailed")
+          if data["audit_surface"].get("reconstructability") not in ("none", "partial", "full"):
+              raise SystemExit("audit_surface.reconstructability must be one of: none, partial, full")
+
+          if not isinstance(data["contact"], dict):
+              raise SystemExit("contact must be an object")
+          if not data["contact"].get("email"):
+              raise SystemExit("contact.email is required")
+
+          print("Manifest v1.0 structure OK")
           PY
 
       - name: Get date
@@ -77,17 +130,17 @@ jobs:
           echo "year=$(date +%Y)" >> $GITHUB_OUTPUT
           echo "month=$(date +%m)" >> $GITHUB_OUTPUT
 
-      - name: Get identity
-        id: identity
+      - name: Get agent ID
+        id: agent_id
         run: |
-          NAME=$(python3 -c "import json; print(json.load(open('manifest.json', encoding='utf-8'))['identity'])")
+          NAME=$(python3 -c "import json; print(json.load(open('manifest.json', encoding='utf-8'))['agent_id'])")
           SAFE_NAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
           echo "name=$SAFE_NAME" >> $GITHUB_OUTPUT
 
       - name: Move manifest
         run: |
           mkdir -p manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}
-          mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.identity.outputs.name }}.json
+          mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.agent_id.outputs.name }}.json
 
       - name: Generate registry.json
         run: |
@@ -96,36 +149,20 @@ jobs:
           import os
           from datetime import datetime, timezone
 
-          repo_url = "https://github.com/agent-manifest/agent-manifest-dataset"
-          raw_base = "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/"
-
           agents = []
 
           for root, dirs, files in os.walk("manifests"):
               for file in files:
                   if not file.endswith(".json"):
                       continue
-
                   path = os.path.join(root, file).replace("\\", "/")
+                  agents.append(path)
 
-                  with open(path, "r", encoding="utf-8") as f:
-                      data = json.load(f)
-
-                  agents.append({
-                      "identity": data.get("identity"),
-                      "declaration_date": data.get("declaration_date"),
-                      "manifest_path": path,
-                      "manifest_url": raw_base + path
-                  })
-
-          agents.sort(key=lambda x: x["manifest_path"])
+          agents.sort()
 
           registry = {
               "registry_version": "1.0",
               "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-              "registry_type": "agent-manifest-public-registry",
-              "source_repository": repo_url,
-              "total_agents": len(agents),
               "agents": agents
           }
 
@@ -145,7 +182,7 @@ jobs:
         if: success()
         uses: actions/github-script@v7
         env:
-          REGISTERED_PATH: manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.identity.outputs.name }}.json
+          REGISTERED_PATH: manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.agent_id.outputs.name }}.json
         with:
           script: |
             const registeredPath = process.env.REGISTERED_PATH;
@@ -185,11 +222,23 @@ jobs:
               "",
               "Please review the workflow logs in Actions, correct the issue body if needed, and submit a new manifest.",
               "",
-              "Common causes:",
-              "- missing ```json code block",
-              "- invalid JSON",
-              "- missing required fields",
-              "- capabilities or boundaries not formatted as arrays"
+              "Required fields (Agent Manifest v1.0):",
+              "  manifest_version, agent_id, agent_name, agent_version,",
+              "  owner, purpose, forbidden_actions, autonomy,",
+              "  risk_profile, data_handling, stopping_authority, audit_surface, contact",
+              "",
+              "Common validation failures:",
+              "- manifest_version must be exactly '1.0'",
+              "- forbidden_actions must be a non-empty array",
+              "- autonomy.level must be an integer (0-3)",
+              "- purpose must be an object with primary_code and description",
+              "- owner must have type (individual, organization, or system) and identifier",
+              "- risk_profile.level must be one of: low, medium, high",
+              "- data_handling.stores_personal_data must be a boolean",
+              "- stopping_authority must have stoppable_by (array) and mechanism",
+              "- audit_surface.logging must be one of: none, basic, detailed",
+              "- audit_surface.reconstructability must be one of: none, partial, full",
+              "- contact.email is required"
             ].join("\n");
 
             await github.rest.issues.createComment({
