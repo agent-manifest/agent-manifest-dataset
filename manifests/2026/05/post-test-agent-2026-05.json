@@ -1,0 +1,41 @@
+{
+  "$schema": "https://agent-manifest-spec.org/spec/v1.0/schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "post-test-agent-2026-05",
+  "agent_name": "Post Test Agent",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "individual",
+    "identifier": "agent-manifest-test"
+  },
+  "purpose": {
+    "primary_code": "assistant",
+    "description": "Integration test agent for Diplomat gateway verification."
+  },
+  "forbidden_actions": [
+    "Retain data beyond session",
+    "Execute without human review"
+  ],
+  "autonomy": {
+    "level": 0
+  },
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "platform-admin"
+    ],
+    "mechanism": "Disable via admin panel"
+  },
+  "audit_surface": {
+    "logging": "basic",
+    "reconstructability": "partial"
+  },
+  "contact": {
+    "email": "test@agent-manifest.local"
+  }
+}
