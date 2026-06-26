@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-06-26T13:01:59.428436Z",
+  "generated_at": "2026-06-26T13:26:53.186375Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
