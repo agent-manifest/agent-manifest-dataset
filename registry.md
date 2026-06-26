@@ -2,11 +2,11 @@
 
 This repository contains the public registry of declared Agent Manifests.
 
-The registry is automatically generated from submitted declarations.
+**`registry.json` is the authoritative, machine-generated index.** This Markdown
+file is a human-readable convenience listing derived from it; if the two ever
+disagree, `registry.json` is the source of truth.
 
-Machine-readable index:
-
-registry.json
+Machine-readable index: [`registry.json`](registry.json)
 
 ---
 
@@ -14,12 +14,10 @@ registry.json
 
 | Agent Identity | Declaration Date | Manifest |
 |----------------|------------------|----------|
-| auto-test-agent-clean | 2026-03-08 | manifests/2026/03/auto-test-agent-clean.json |
-| canonical-test-agent | 2026-03-08 | manifests/2026/03/canonical-test-agent.json |
-| registry-test-agent | 2026-03-08 | manifests/2026/03/registry-test-agent.json |
-| discovery-test-agent | 2026-03-08 | manifests/2026/03/discovery-test-agent.json |
-| test-agent | 2026-03-08 | manifests/2026/03/test-agent.json |
-| test-registry | 2026-03-08 | manifests/2026/03/test-registry.json |
+| agent-manifest-ambassador | 2026-03-08 | manifests/2026/03/agent-manifest-ambassador.json |
+| agent-manifest-dataset | 2026-03-09 | manifests/2026/03/agent-manifest-dataset.json |
+| agent-manifest-registry | 2026-03-08 | manifests/2026/03/agent-manifest-registry.json |
+| agent-manifest | 2026-03-09 | manifests/2026/03/agent-manifest.json |
 | the-diplomat | 2026-03-08 | manifests/2026/03/the-diplomat.json |
 
 ---
@@ -37,9 +35,9 @@ registry.json
 
 The registry is:
 
-- public  
-- append-only  
-- automatically generated  
-- auditable  
+- public
+- automatically generated (`registry.json`)
+- auditable
 
-Each declaration is preserved as a historical record.
+Every entry validates against the published Agent Manifest v1.0 JSON Schema:
+https://agent-manifest-spec.org/spec/v1.0/schema.json

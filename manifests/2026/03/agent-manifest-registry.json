@@ -1,18 +1,46 @@
 {
-  "$schema": "https://agent-manifest-spec.org/schema/v1/manifest.schema.json",
-  "specVersion": "1.0.0",
-  "identity": "agent-manifest-registry",
-  "purpose": "Governance and discovery layer for the Agent Manifest public registry ecosystem",
+  "$schema": "https://agent-manifest-spec.org/spec/v1.0/schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "agent-manifest-registry",
+  "agent_name": "Agent Manifest Registry",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "Agent Manifest Project"
+  },
+  "purpose": {
+    "primary_code": "registry.governance",
+    "description": "Governance and discovery layer for the Agent Manifest public registry ecosystem."
+  },
   "capabilities": [
     "registry-governance",
     "registry-discovery",
     "federation-rules",
     "discovery-endpoint-publication"
   ],
-  "boundaries": [
+  "forbidden_actions": [
     "no-agent-execution",
     "no-autonomous-enforcement"
   ],
-  "autonomy_level": "supervised",
+  "autonomy": {
+    "level": 1
+  },
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": ["project maintainer"],
+    "mechanism": "Repository can be unpublished, modified, or access-revoked by the project maintainer."
+  },
+  "audit_surface": {
+    "logging": "none",
+    "reconstructability": "none"
+  },
+  "contact": {
+    "email": "contact@agent-manifest-spec.org"
+  },
   "declaration_date": "2026-03-08"
 }

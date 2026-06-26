@@ -10,7 +10,7 @@ Public dataset of submitted Agent Manifest declarations.
 
 ## What this is
 
-A public, append-only record of Agent Manifest declarations submitted through the Diplomat registration gateway.
+A public record of Agent Manifest declarations submitted through the Diplomat registration gateway. The dataset is append-only in normal operation; it underwent a one-time foundational cleanup that removed operational test artifacts and migrated pre-v1.0 declarations to the v1.0 schema.
 
 Each entry is a single JSON file stored at:
 
@@ -26,7 +26,7 @@ manifests/2026/03/the-diplomat.json
 
 The dataset is intended as an audit surface and a research corpus, not as a runtime system.
 
-Historical legacy manifests are preserved as historical records. New submissions are required to conform to the v1.0 schema.
+All recorded manifests conform to the Agent Manifest v1.0 JSON Schema. Declarations that predated the v1.0 schema were migrated to conform to it; new submissions are required to conform to the v1.0 schema.
 
 -----
 
