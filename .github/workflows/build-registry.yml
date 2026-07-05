@@ -1,4 +1,4 @@
-name: Verify Agent Registry
+name: Agent Registry
 
 on:
   pull_request:
@@ -10,14 +10,15 @@ on:
       - main
     paths:
       - "manifests/**"
-      - "registry.json"
-
-permissions:
-  contents: read
 
 jobs:
+  # Pull requests must arrive with registry.json already in sync.
   verify-registry:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Checkout repository
@@ -49,3 +50,76 @@ jobs:
 
           print("registry.json in sync with manifests/**:", len(agents), "agents")
           PY
+
+  # Direct commits to manifests/** (e.g. Diplomat submissions via the
+  # Contents API) do not carry a registry update, so main regenerates
+  # registry.json itself. The bot commit is pushed with GITHUB_TOKEN,
+  # which does not trigger workflows, so this cannot loop.
+  sync-registry:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    concurrency:
+      group: registry-sync
+      cancel-in-progress: false
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Regenerate registry.json if the agent list changed
+        id: regen
+        run: |
+          python3 <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+
+          agents = sorted(
+              os.path.join(root, file).replace("\\", "/")
+              for root, dirs, files in os.walk("manifests")
+              for file in files
+              if file.endswith(".json")
+          )
+
+          current = None
+          try:
+              with open("registry.json", encoding="utf-8") as f:
+                  current = json.load(f)
+          except (FileNotFoundError, json.JSONDecodeError):
+              pass
+
+          # Compare only the agent set so a run never commits a
+          # timestamp-only change.
+          if current is not None and current.get("agents") == agents:
+              print("registry.json already in sync:", len(agents), "agents")
+              changed = False
+          else:
+              registry = {
+                  "registry_version": "1.0",
+                  "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
+                  "agents": agents,
+              }
+              with open("registry.json", "w", encoding="utf-8") as f:
+                  json.dump(registry, f, indent=2)
+              print("registry.json regenerated:", len(agents), "agents")
+              changed = True
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"changed={'true' if changed else 'false'}\n")
+          PY
+
+      - name: Commit and push updated registry
+        if: steps.regen.outputs.changed == 'true'
+        run: |
+          git config user.name "manifest-bot"
+          git config user.email "bot@agent-manifest.local"
+          git add registry.json
+          git commit -m "chore: sync registry.json with manifests"
+          git pull --rebase origin main
+          git push origin main
