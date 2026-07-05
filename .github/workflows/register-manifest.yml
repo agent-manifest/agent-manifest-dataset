@@ -6,6 +6,9 @@ on:
 
 jobs:
   register:
+    # Only issues created from the manifest-submission template; other
+    # issues must not trigger registration attempts or failure comments.
+    if: contains(github.event.issue.labels.*.name, 'manifest-submission')
     runs-on: ubuntu-latest
 
     permissions:
@@ -139,8 +142,16 @@ jobs:
 
       - name: Move manifest
         run: |
+          NAME="${{ steps.agent_id.outputs.name }}"
+          # The dataset is append-only: an agent_id may be registered once.
+          EXISTING=$(find manifests -name "$NAME.json" -type f | head -1)
+          if [ -n "$EXISTING" ]; then
+            echo "agent_id '$NAME' is already registered at $EXISTING"
+            echo "The dataset is append-only; resubmission does not replace an existing declaration."
+            exit 1
+          fi
           mkdir -p manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}
-          mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/${{ steps.agent_id.outputs.name }}.json
+          mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/$NAME.json
 
       - name: Generate registry.json
         run: |
@@ -238,7 +249,8 @@ jobs:
               "- stopping_authority must have stoppable_by (array) and mechanism",
               "- audit_surface.logging must be one of: none, basic, detailed",
               "- audit_surface.reconstructability must be one of: none, partial, full",
-              "- contact.email is required"
+              "- contact.email is required",
+              "- agent_id must not already exist in the dataset (append-only)"
             ].join("\n");
 
             await github.rest.issues.createComment({
