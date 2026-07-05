@@ -10,6 +10,7 @@ on:
       - main
     paths:
       - "manifests/**"
+      - "registry.json"
 
 jobs:
   # Pull requests must arrive with registry.json already in sync.
