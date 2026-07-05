@@ -80,7 +80,7 @@ This dataset provides:
 - public transparency of declared agent identities and boundaries
 - a historical record of declarations
 - an auditable surface for research and governance review
-- a research corpus for the study of agent declaration behavior
+- a research corpus for the study of agent declaration behavior — see [`studies/`](./studies/)
 
 -----
 
