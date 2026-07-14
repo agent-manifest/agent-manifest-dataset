@@ -15,6 +15,13 @@ jobs:
       contents: write
       issues: write
 
+    # Serialize with sync-registry (same group) so two simultaneous
+    # registrations, or a registration racing a registry sync, never
+    # collide on push.
+    concurrency:
+      group: registry-sync
+      cancel-in-progress: false
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -42,90 +49,21 @@ jobs:
               f.write(json_text)
           PY
 
-      - name: Validate manifest structure
+      - name: Verify vendored schema matches the canonical v1.0 schema
         run: |
-          python3 <<'PY'
-          import json
+          echo "c1e3caaf9543f2a5d610ccdfaf36329562fe03b6db00c4ea30b7ef0b7b8ef70a  schema/v1.0/schema.json" | shasum -a 256 -c -
 
-          required_fields = [
-              "manifest_version",
-              "agent_id",
-              "agent_name",
-              "agent_version",
-              "owner",
-              "purpose",
-              "forbidden_actions",
-              "autonomy",
-              "risk_profile",
-              "data_handling",
-              "stopping_authority",
-              "audit_surface",
-              "contact"
-          ]
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
 
-          with open("manifest.json", encoding="utf-8") as f:
-              data = json.load(f)
-
-          missing = [field for field in required_fields if field not in data]
-          if missing:
-              raise SystemExit("Missing required v1.0 field(s): " + ", ".join(missing))
-
-          if data["manifest_version"] != "1.0":
-              raise SystemExit("manifest_version must be '1.0'")
-
-          if not isinstance(data["forbidden_actions"], list) or len(data["forbidden_actions"]) == 0:
-              raise SystemExit("forbidden_actions must be a non-empty array")
-
-          if not isinstance(data["autonomy"], dict):
-              raise SystemExit("autonomy must be an object")
-          if not isinstance(data["autonomy"].get("level"), int):
-              raise SystemExit("autonomy.level must be an integer")
-          if not (0 <= data["autonomy"]["level"] <= 3):
-              raise SystemExit("autonomy.level must be between 0 and 3")
-
-          if not isinstance(data["purpose"], dict):
-              raise SystemExit("purpose must be an object with primary_code and description")
-          if "primary_code" not in data["purpose"] or "description" not in data["purpose"]:
-              raise SystemExit("purpose must have primary_code and description")
-
-          if not isinstance(data["owner"], dict):
-              raise SystemExit("owner must be an object with type and identifier")
-          if "type" not in data["owner"] or "identifier" not in data["owner"]:
-              raise SystemExit("owner must have type and identifier")
-          if data["owner"]["type"] not in ("individual", "organization", "system"):
-              raise SystemExit("owner.type must be one of: individual, organization, system")
-
-          if not isinstance(data["risk_profile"], dict):
-              raise SystemExit("risk_profile must be an object")
-          if data["risk_profile"].get("level") not in ("low", "medium", "high"):
-              raise SystemExit("risk_profile.level must be one of: low, medium, high")
-
-          if not isinstance(data["data_handling"], dict):
-              raise SystemExit("data_handling must be an object")
-          if not isinstance(data["data_handling"].get("stores_personal_data"), bool):
-              raise SystemExit("data_handling.stores_personal_data must be a boolean")
-
-          if not isinstance(data["stopping_authority"], dict):
-              raise SystemExit("stopping_authority must be an object")
-          if not isinstance(data["stopping_authority"].get("stoppable_by"), list) or len(data["stopping_authority"]["stoppable_by"]) == 0:
-              raise SystemExit("stopping_authority.stoppable_by must be a non-empty array")
-          if not data["stopping_authority"].get("mechanism"):
-              raise SystemExit("stopping_authority.mechanism is required")
-
-          if not isinstance(data["audit_surface"], dict):
-              raise SystemExit("audit_surface must be an object")
-          if data["audit_surface"].get("logging") not in ("none", "basic", "detailed"):
-              raise SystemExit("audit_surface.logging must be one of: none, basic, detailed")
-          if data["audit_surface"].get("reconstructability") not in ("none", "partial", "full"):
-              raise SystemExit("audit_surface.reconstructability must be one of: none, partial, full")
-
-          if not isinstance(data["contact"], dict):
-              raise SystemExit("contact must be an object")
-          if not data["contact"].get("email"):
-              raise SystemExit("contact.email is required")
-
-          print("Manifest v1.0 structure OK")
-          PY
+      - name: Validate manifest against the v1.0 schema
+        run: |
+          npx --yes -p ajv-cli@5 -p ajv-formats@3 ajv validate \
+            --spec=draft2020 -c ajv-formats --strict=false \
+            -s schema/v1.0/schema.json \
+            -d manifest.json
 
       - name: Get date
         id: date
@@ -187,6 +125,7 @@ jobs:
           git config user.email "bot@agent-manifest.local"
           git add manifests registry.json
           git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes"
+          git pull --rebase origin main
           git push
 
       - name: Comment and close issue on success
@@ -246,6 +185,7 @@ jobs:
               "- owner must have type (individual, organization, or system) and identifier",
               "- risk_profile.level must be one of: low, medium, high",
               "- data_handling.stores_personal_data must be a boolean",
+              "- data_handling.retention is required when stores_personal_data is true",
               "- stopping_authority must have stoppable_by (array) and mechanism",
               "- audit_surface.logging must be one of: none, basic, detailed",
               "- audit_surface.reconstructability must be one of: none, partial, full",
