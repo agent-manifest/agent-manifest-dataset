@@ -128,4 +128,4 @@ registry.json
 
 This repository stores declarations only.
 
-Validation, trust scoring, and compliance checks may be implemented in separate tools such as an Agent Manifest Validator.
+Structural validation is available offline via the [agent-manifest-cli](https://github.com/agent-manifest/agent-manifest-cli) tool, which checks manifests against the canonical v1.0 JSON Schema.
