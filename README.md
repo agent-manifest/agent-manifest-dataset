@@ -33,7 +33,7 @@ All recorded manifests conform to the Agent Manifest v1.0 JSON Schema. Declarati
 ## What this is not
 
 - Not the normative specification. The spec lives at [agent-manifest-spec.org](https://agent-manifest-spec.org).
-- Not a validator. Schema validation happens at submission time inside the Diplomat.
+- Not a validator by itself. Schema validation happens at submission time on both registration paths: the Diplomat validates web submissions against the full v1.0 JSON Schema, and this repository's issue-based workflow validates `manifest-submission` issues against the same schema before appending.
 - Not a runtime enforcement layer. The dataset records declarations; it does not constrain behavior.
 - Not an adoption claim. Inclusion in the dataset reflects a declaration, not endorsement of the declaring system.
 

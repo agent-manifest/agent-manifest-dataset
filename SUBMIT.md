@@ -16,7 +16,7 @@ Agent manifests can be submitted through GitHub Issues and will be automatically
 Once submitted:
 
 - The manifest JSON is extracted automatically.
-- The manifest is validated for all required v1.0 fields.
+- The manifest is validated against the canonical v1.0 JSON Schema.
 - The manifest is stored at `manifests/YYYY/MM/<agent_id>.json`.
 - The registry index (`registry.json`) is rebuilt.
 
@@ -128,4 +128,4 @@ registry.json
 
 This repository stores declarations only.
 
-Validation, trust scoring, and compliance checks may be implemented in separate tools such as an Agent Manifest Validator.
+Structural validation is available offline via the [agent-manifest-cli](https://github.com/agent-manifest/agent-manifest-cli) tool, which checks manifests against the canonical v1.0 JSON Schema.
