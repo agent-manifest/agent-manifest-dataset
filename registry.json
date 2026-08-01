@@ -1,11 +1,49 @@
 {
-  "registry_version": "1.0",
-  "generated_at": "2026-06-26T13:26:53.186375Z",
+  "registry_version": "1.1",
+  "generated_at": "2026-08-01T19:06:36.974231Z",
+  "base_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
     "manifests/2026/03/agent-manifest-registry.json",
     "manifests/2026/03/agent-manifest.json",
     "manifests/2026/03/the-diplomat.json"
+  ],
+  "index": [
+    {
+      "agent_id": "agent-manifest",
+      "manifest_path": "manifests/2026/03/agent-manifest.json",
+      "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest.json",
+      "registered_at": "2026-03-09T09:30:54Z",
+      "source": "https://github.com/agent-manifest/agent-manifest-dataset"
+    },
+    {
+      "agent_id": "agent-manifest-ambassador",
+      "manifest_path": "manifests/2026/03/agent-manifest-ambassador.json",
+      "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-ambassador.json",
+      "registered_at": "2026-03-08T22:56:44Z",
+      "source": "https://github.com/agent-manifest/agent-manifest-dataset"
+    },
+    {
+      "agent_id": "agent-manifest-dataset",
+      "manifest_path": "manifests/2026/03/agent-manifest-dataset.json",
+      "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-dataset.json",
+      "registered_at": "2026-03-09T09:24:06Z",
+      "source": "https://github.com/agent-manifest/agent-manifest-dataset"
+    },
+    {
+      "agent_id": "agent-manifest-registry",
+      "manifest_path": "manifests/2026/03/agent-manifest-registry.json",
+      "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-registry.json",
+      "registered_at": "2026-03-08T23:19:26Z",
+      "source": "https://github.com/agent-manifest/agent-manifest-dataset"
+    },
+    {
+      "agent_id": "the-diplomat",
+      "manifest_path": "manifests/2026/03/the-diplomat.json",
+      "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/the-diplomat.json",
+      "registered_at": "2026-03-08T07:13:51-03:00",
+      "source": "https://github.com/agent-manifest/agent-manifest-dataset"
+    }
   ]
 }

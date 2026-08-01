@@ -91,40 +91,23 @@ jobs:
           mkdir -p manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}
           mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/$NAME.json
 
-      - name: Generate registry.json
-        run: |
-          python3 <<'PY'
-          import json
-          import os
-          from datetime import datetime, timezone
-
-          agents = []
-
-          for root, dirs, files in os.walk("manifests"):
-              for file in files:
-                  if not file.endswith(".json"):
-                      continue
-                  path = os.path.join(root, file).replace("\\", "/")
-                  agents.append(path)
-
-          agents.sort()
-
-          registry = {
-              "registry_version": "1.0",
-              "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-              "agents": agents
-          }
-
-          with open("registry.json", "w", encoding="utf-8") as f:
-              json.dump(registry, f, indent=2)
-          PY
-
-      - name: Commit manifest and registry
+      # The manifest is committed before the index is generated, so that
+      # registered_at can be read from git history rather than from the clock.
+      # It records what the registry did, and the commit is what it did.
+      - name: Commit the manifest
         run: |
           git config user.name "manifest-bot"
           git config user.email "bot@agent-manifest.local"
-          git add manifests registry.json
+          git add manifests
           git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes"
+
+      - name: Generate registry.json
+        run: python3 scripts/generate-registry.py
+
+      - name: Commit the registry index
+        run: |
+          git add registry.json
+          git commit -m "regenerate registry index for issue #${{ github.event.issue.number }}" || echo "No changes"
           git pull --rebase origin main
           git push
 
