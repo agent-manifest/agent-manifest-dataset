@@ -49,21 +49,34 @@ jobs:
               f.write(json_text)
           PY
 
-      - name: Verify vendored schema matches the canonical v1.0 schema
-        run: |
-          echo "c1e3caaf9543f2a5d610ccdfaf36329562fe03b6db00c4ea30b7ef0b7b8ef70a  schema/v1.0/schema.json" | shasum -a 256 -c -
-
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: "22"
+
+      # This repository used to keep its own copy of the schema and check it
+      # against a checksum written here, then run its own ajv-cli against that
+      # copy. The copy is gone. The schema and the checking both come from
+      # @agent-manifest/client, pinned to an exact version and installed from
+      # the registry, so a manifest submitted here gets the same verdict the
+      # CLI and the Diplomat would give it.
+      - name: Install the shared validator
+        run: npm install --no-save --no-package-lock @agent-manifest/client@0.1.0
 
       - name: Validate manifest against the v1.0 schema
         run: |
-          npx --yes -p ajv-cli@5 -p ajv-formats@3 ajv validate \
-            --spec=draft2020 -c ajv-formats --strict=false \
-            -s schema/v1.0/schema.json \
-            -d manifest.json
+          node --input-type=module -e '
+            import { readFile } from "node:fs/promises";
+            import { validate } from "@agent-manifest/client/validate";
+            const document = JSON.parse(await readFile("manifest.json", "utf8"));
+            const { schemaValid, errors, schemaVersion } = validate(document);
+            if (schemaValid) {
+              console.log(`Valid against Agent Manifest v${schemaVersion}.`);
+            } else {
+              for (const e of errors) console.error(`${e.path} ${e.message}`);
+              process.exit(1);
+            }
+          '
 
       - name: Get date
         id: date
