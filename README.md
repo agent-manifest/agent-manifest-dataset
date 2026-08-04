@@ -28,6 +28,12 @@ The dataset is intended as an audit surface and a research corpus, not as a runt
 
 All recorded manifests conform to the Agent Manifest v1.0 JSON Schema. Declarations that predated the v1.0 schema were migrated to conform to it; new submissions are required to conform to the v1.0 schema.
 
+`registered_at` in [`registry.json`](./registry.json) is the date on which the registry incorporated a declaration. It is not the date of the file's current bytes, and it does not change when a recorded file changes.
+
+Files under `manifests/` are not guaranteed to be immutable. Some carry corrections made after they were recorded, and the earlier bytes remain visible in this repository's git history. Commits carrying such a correction use the `correction:` prefix and cite the case that gave rise to them.
+
+This repository does not determine whether a correction is legitimate. That determination belongs to project governance, not to this record.
+
 -----
 
 ## What this is not

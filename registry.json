@@ -1,6 +1,6 @@
 {
   "registry_version": "1.1",
-  "generated_at": "2026-08-01T19:06:36.974231Z",
+  "generated_at": "2026-08-04T18:55:14.560852Z",
   "base_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",

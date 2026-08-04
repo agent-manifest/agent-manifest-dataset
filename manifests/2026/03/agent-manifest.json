@@ -9,12 +9,12 @@
     "identifier": "Agent Manifest Project"
   },
   "purpose": {
-    "primary_code": "specification.authority",
-    "description": "Canonical specification authority for the Agent Manifest standard, responsible for publishing the schema, governance model, and reference documentation for declarative AI agent identity."
+    "primary_code": "specification.publication",
+    "description": "Publishes the Agent Manifest specification, its JSON Schema, and its reference documentation. It does not execute, validate, score, or enforce the behaviour of any agent, including its own."
   },
   "capabilities": [
     "schema-publication",
-    "specification-governance",
+    "specification-maintenance",
     "reference-documentation"
   ],
   "forbidden_actions": [
