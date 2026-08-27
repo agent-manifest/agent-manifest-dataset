@@ -1,0 +1,44 @@
+{
+  "$schema": "https://agent-manifest-spec.org/spec/v1.0/schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "resume24desk.agent",
+  "agent_name": "Resume 24 Desk",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "Resume 24 Desk"
+  },
+  "purpose": {
+    "primary_code": "general.assistance",
+    "description": "Rewrites job-seeker resumes and LinkedIn About copy in 24 hours from materials the client provides. Does not invent credentials, metrics, or apply to jobs on the client’s behalf."
+  },
+  "forbidden_actions": [
+    "execute_irreversible_actions",
+    "access_private_data_without_consent",
+    "invent_credentials_or_metrics",
+    "log_into_client_linkedin_or_email"
+  ],
+  "autonomy": {
+    "level": 1
+  },
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": true,
+    "retention": "P30D"
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner"
+    ],
+    "mechanism": "Disable the listing and stop answering resume24desk@agentmail.to."
+  },
+  "audit_surface": {
+    "logging": "basic",
+    "reconstructability": "partial"
+  },
+  "contact": {
+    "email": "resume24desk@agentmail.to"
+  }
+}
