@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-09-11T17:51:21.119967Z",
+  "generated_at": "2026-09-11T19:31:16.007219Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -9,6 +9,7 @@
     "manifests/2026/03/the-diplomat.json",
     "manifests/2026/08/resume24desk.agent.json",
     "manifests/2026/09/0xhumans-protocol-probe.json",
-    "manifests/2026/09/0xhumans-protocol.json"
+    "manifests/2026/09/0xhumans-protocol.json",
+    "manifests/2026/09/real-estate-ai-operating-system.json"
   ]
 }
