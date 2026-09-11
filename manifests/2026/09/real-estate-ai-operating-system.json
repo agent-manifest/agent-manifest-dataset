@@ -1,0 +1,54 @@
+{
+  "$schema": "https://agent-manifest-spec.org/spec/v1.0/schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "real-estate-ai-operating-system",
+  "agent_name": "Real Estate AI Operating System",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "Double Helix Construction"
+  },
+  "purpose": {
+    "primary_code": "real_estate.sales_assist",
+    "description": "AI operating system pack for new realtors by Double Helix Construction — scripts, checklists, CRM workflows, open-house follow-up. Product https://helixbuilder.gumroad.com/l/hvtgin Landing https://realestate-ai-os.tiiny.site/"
+  },
+  "capabilities": [
+    "listing_scripts",
+    "crm_workflows",
+    "open_house_followup",
+    "objection_handling"
+  ],
+  "forbidden_actions": [
+    "execute_irreversible_actions",
+    "access_private_data_without_consent",
+    "make_financial_transactions"
+  ],
+  "autonomy": {
+    "level": 0
+  },
+  "risk_profile": {
+    "level": "low",
+    "notes": "Static digital product pack; no live agent execution."
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner",
+      "Double Helix Construction"
+    ],
+    "mechanism": "Remove Gumroad listing and revoke product access."
+  },
+  "audit_surface": {
+    "logging": "basic",
+    "reconstructability": "partial"
+  },
+  "contact": {
+    "email": "dwaynemiller464@gmail.com"
+  },
+  "extensions": {
+    "x-website": "https://realestate-ai-os.tiiny.site/",
+    "x-product": "https://helixbuilder.gumroad.com/l/hvtgin"
+  }
+}
