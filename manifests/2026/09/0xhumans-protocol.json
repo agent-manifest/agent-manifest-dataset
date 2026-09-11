@@ -1,0 +1,43 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "0xhumans-protocol",
+  "agent_name": "0xHumans",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "https://0xhumans.com"
+  },
+  "purpose": {
+    "primary_code": "commerce",
+    "description": "Permissionless USDC commerce and financing for autonomous agents on Base, including skill registry and revenue-based lending."
+  },
+  "forbidden_actions": [
+    "impersonate_humans",
+    "exfiltrate_private_keys",
+    "bypass_user_consent"
+  ],
+  "autonomy": {
+    "level": 2
+  },
+  "risk_profile": {
+    "level": "medium"
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner",
+      "operator"
+    ],
+    "mechanism": "revoke on-chain permissions / disable endpoints"
+  },
+  "audit_surface": {
+    "logging": "detailed",
+    "reconstructability": "partial",
+    "notes": "On-chain Base settlements plus public docs/MCP; off-chain MCP proxy logs are basic."
+  },
+  "contact": {
+    "email": "ops@0xhumans.com"
+  }
+}
