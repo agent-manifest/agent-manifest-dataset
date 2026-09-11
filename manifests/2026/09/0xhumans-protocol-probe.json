@@ -1,0 +1,41 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "0xhumans-protocol-probe",
+  "agent_name": "0xHumans Protocol",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "0xHumans"
+  },
+  "purpose": {
+    "primary_code": "agent.protocol",
+    "description": "Agent-native coordination and discovery protocol for autonomous agents."
+  },
+  "forbidden_actions": [
+    "impersonate humans",
+    "bypass user consent"
+  ],
+  "autonomy": {
+    "level": 2
+  },
+  "risk_profile": {
+    "level": "medium"
+  },
+  "data_handling": {
+    "stores_personal_data": false,
+    "retention": "none"
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner"
+    ],
+    "mechanism": "API revoke and runtime disable"
+  },
+  "audit_surface": {
+    "logging": "basic",
+    "reconstructability": "partial"
+  },
+  "contact": {
+    "email": "contact@0xhumans.example"
+  }
+}
