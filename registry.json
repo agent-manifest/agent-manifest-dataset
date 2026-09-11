@@ -1,12 +1,13 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-08-27T00:56:09.372561Z",
+  "generated_at": "2026-09-11T17:40:26.718566Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
     "manifests/2026/03/agent-manifest-registry.json",
     "manifests/2026/03/agent-manifest.json",
     "manifests/2026/03/the-diplomat.json",
-    "manifests/2026/08/resume24desk.agent.json"
+    "manifests/2026/08/resume24desk.agent.json",
+    "manifests/2026/09/0xhumans-protocol-probe.json"
   ]
 }
