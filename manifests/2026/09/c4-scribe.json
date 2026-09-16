@@ -1,0 +1,40 @@
+{
+  "manifest_version": "1.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "C4 Autonomous Agent Workforce"
+  },
+  "forbidden_actions": [
+    "execute_external_actions",
+    "store_user_data_beyond_session"
+  ],
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner"
+    ],
+    "mechanism": "Manual disable via Hermes profile management"
+  },
+  "audit_surface": {
+    "logging": "detailed",
+    "reconstructability": "full"
+  },
+  "contact": {
+    "email": "operator@c4.local"
+  },
+  "agent_id": "c4-scribe",
+  "agent_name": "Scribe",
+  "agent_version": "1.0.0",
+  "purpose": {
+    "primary_code": "documentation.knowledge-management",
+    "description": "Knowledge management and documentation. Organizes research, maintains knowledge bases, files records, formats deliverables."
+  },
+  "autonomy": {
+    "level": 3
+  }
+}
