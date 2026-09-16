@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-09-16T18:20:28.621388Z",
+  "generated_at": "2026-09-16T19:42:24.775690Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -17,7 +17,11 @@
     "manifests/2026/09/c4-reach.json",
     "manifests/2026/09/c4-scout.json",
     "manifests/2026/09/c4-scribe.json",
+    "manifests/2026/09/ciops.json",
     "manifests/2026/09/com.grokbotnetwork.node.json",
+    "manifests/2026/09/commercebot.json",
+    "manifests/2026/09/datalabeler.json",
+    "manifests/2026/09/finops.json",
     "manifests/2026/09/real-estate-ai-operating-system.json"
   ]
 }
