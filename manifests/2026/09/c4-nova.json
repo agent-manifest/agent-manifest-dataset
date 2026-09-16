@@ -1,0 +1,40 @@
+{
+  "manifest_version": "1.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "C4 Autonomous Agent Workforce"
+  },
+  "forbidden_actions": [
+    "execute_external_actions",
+    "store_user_data_beyond_session"
+  ],
+  "risk_profile": {
+    "level": "medium"
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner"
+    ],
+    "mechanism": "Manual disable via Hermes profile management"
+  },
+  "audit_surface": {
+    "logging": "detailed",
+    "reconstructability": "full"
+  },
+  "contact": {
+    "email": "operator@c4.local"
+  },
+  "agent_id": "c4-nova",
+  "agent_name": "Nova",
+  "agent_version": "1.0.0",
+  "purpose": {
+    "primary_code": "hardware.recovery",
+    "description": "System recovery and hardware engineering. OpenWrt router recovery, embedded systems, and network configuration."
+  },
+  "autonomy": {
+    "level": 3
+  }
+}
