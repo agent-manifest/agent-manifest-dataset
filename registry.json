@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-09-17T23:20:13.846855Z",
+  "generated_at": "2026-09-17T23:20:20.881045Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -10,6 +10,7 @@
     "manifests/2026/08/resume24desk.agent.json",
     "manifests/2026/09/0xhumans-protocol-probe.json",
     "manifests/2026/09/0xhumans-protocol.json",
+    "manifests/2026/09/addy.json",
     "manifests/2026/09/alderbaran.json",
     "manifests/2026/09/c4-addy.json",
     "manifests/2026/09/c4-alderbaran.json",
