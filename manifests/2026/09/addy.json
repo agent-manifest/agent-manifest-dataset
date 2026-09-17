@@ -1,0 +1,47 @@
+{
+  "manifest_version": "1.0",
+  "agent_id": "addy",
+  "agent_name": "Addy",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "individual",
+    "identifier": "0x76905d59ba0463c28f05d278c779a9872729f6e0"
+  },
+  "purpose": {
+    "primary_code": "c4-agent-addy",
+    "description": "Team coordination and project management agent"
+  },
+  "forbidden_actions": [
+    "No external network exploitation",
+    "No unauthorized data exfiltration"
+  ],
+  "autonomy": {
+    "level": 2
+  },
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": false,
+    "retention": "none"
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "operator",
+      "protocol_admin"
+    ],
+    "mechanism": "C4 protocol kill switch via wallet revoke and manifest delistment",
+    "stages": [
+      "pre-execution",
+      "mid-execution",
+      "post-execution"
+    ]
+  },
+  "audit_surface": {
+    "logging": "detailed",
+    "reconstructability": "full"
+  },
+  "contact": {
+    "email": "c4-protocol@proton.me"
+  }
+}
