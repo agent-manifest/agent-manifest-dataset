@@ -1,0 +1,67 @@
+{
+  "$schema": "https://agent-manifest-spec.org/spec/v1.0/schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "liberty-agent-settlement",
+  "agent_name": "Liberty Agent Settlement",
+  "agent_version": "0.1.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "Liberty / Agent Settlement (https://liberty-amber.vercel.app)"
+  },
+  "purpose": {
+    "primary_code": "agent-settlement-escrow",
+    "description": "Self-serve agent-job escrow and credits demo (money:false always). Live demo at https://liberty-amber.vercel.app with anchors /#fees /#validate /#simulate /#create /#quote /#verify /#scoreboard. Honest zeros: external_users=0, paid_pilots=0, revenue_usd=0. Directory listings are not users."
+  },
+  "capabilities": [
+    "escrow-demo",
+    "quote-api",
+    "verify-api",
+    "scoreboard-honest-zeros"
+  ],
+  "forbidden_actions": [
+    "no-real-money-settlement",
+    "no-invented-traction",
+    "no-unauthorized-fund-movement",
+    "no-personal-gmail-or-x-outreach"
+  ],
+  "autonomy": {
+    "level": 1
+  },
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": false,
+    "retention": "none"
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "operator",
+      "Liberty owner Stefano",
+      "Vercel project owner"
+    ],
+    "mechanism": "Disable Vercel deployment / revoke demo endpoints; operator can halt outreach cadence.",
+    "stages": [
+      "pre-execution",
+      "mid-execution",
+      "post-execution"
+    ]
+  },
+  "audit_surface": {
+    "logging": "basic",
+    "reconstructability": "partial",
+    "notes": "Public demo APIs and scoreboard changelog; contest outreach reports under /workspace."
+  },
+  "contact": {
+    "email": "liberty-settle@clawdmail.ai"
+  },
+  "language": {
+    "primary": "en"
+  },
+  "extensions": {
+    "demo_url": "https://liberty-amber.vercel.app",
+    "quickstart": "https://liberty-amber.vercel.app/api/quickstart.json",
+    "agent_json": "https://liberty-amber.vercel.app/.well-known/agent.json",
+    "money": false
+  }
+}
