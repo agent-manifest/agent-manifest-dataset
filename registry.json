@@ -1,6 +1,6 @@
 {
   "registry_version": "1.0",
-  "generated_at": "2026-09-17T23:20:20.881045Z",
+  "generated_at": "2026-09-18T00:30:29.212996Z",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
     "manifests/2026/03/agent-manifest-dataset.json",
@@ -25,6 +25,7 @@
     "manifests/2026/09/datalabeler.json",
     "manifests/2026/09/dev.json",
     "manifests/2026/09/finops.json",
+    "manifests/2026/09/liberty-agent-settlement.json",
     "manifests/2026/09/nova.json",
     "manifests/2026/09/real-estate-ai-operating-system.json",
     "manifests/2026/09/scout.json",
