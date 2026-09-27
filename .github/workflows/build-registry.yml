@@ -49,7 +49,20 @@ jobs:
               print("found agents:   ", current.get("agents"))
               sys.exit(1)
 
-          print("registry.json in sync with manifests/**:", len(agents), "agents")
+          if current.get("registry_version") != "1.1":
+              print(f"registry_version is {current.get('registry_version')!r}, expected '1.1'")
+              sys.exit(1)
+
+          if not isinstance(current.get("base_url"), str):
+              print("registry.json is missing base_url")
+              sys.exit(1)
+
+          if not isinstance(current.get("index"), list):
+              print("registry.json is missing index (required since registry_version 1.1)")
+              sys.exit(1)
+
+          print("registry.json in sync with manifests/**:", len(agents), "agents,",
+                len(current["index"]), "indexed")
           PY
 
   # Direct commits to manifests/** (e.g. Diplomat submissions via the
@@ -73,46 +86,38 @@ jobs:
         with:
           ref: main
 
-      - name: Regenerate registry.json if the agent list changed
+      - name: Regenerate registry.json
+        run: python3 scripts/generate-registry.py
+
+      - name: Check whether registry changed
         id: regen
         run: |
           python3 <<'PY'
-          import json
-          import os
-          from datetime import datetime, timezone
+          import json, os, subprocess
 
-          agents = sorted(
-              os.path.join(root, file).replace("\\", "/")
-              for root, dirs, files in os.walk("manifests")
-              for file in files
-              if file.endswith(".json")
-          )
+          with open('registry.json', encoding='utf-8') as f:
+              new_text = f.read()
+          new = json.loads(new_text)
 
-          current = None
-          try:
-              with open("registry.json", encoding="utf-8") as f:
-                  current = json.load(f)
-          except (FileNotFoundError, json.JSONDecodeError):
-              pass
+          committed_text = subprocess.check_output(
+              ['git', 'show', 'HEAD:registry.json']
+          ).decode('utf-8')
+          committed = json.loads(committed_text)
 
-          # Compare only the agent set so a run never commits a
-          # timestamp-only change.
-          if current is not None and current.get("agents") == agents:
-              print("registry.json already in sync:", len(agents), "agents")
-              changed = False
+          def without_ts(d):
+              return {k: v for k, v in d.items() if k != 'generated_at'}
+
+          if without_ts(new) == without_ts(committed):
+              # Only generated_at differs — restore committed file so no spurious commit
+              with open('registry.json', 'w', encoding='utf-8') as f:
+                  f.write(committed_text)
+              print('registry.json unchanged (only generated_at differed)')
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+                  out.write('changed=false\n')
           else:
-              registry = {
-                  "registry_version": "1.0",
-                  "generated_at": datetime.now(timezone.utc).isoformat().replace("+00:00", "Z"),
-                  "agents": agents,
-              }
-              with open("registry.json", "w", encoding="utf-8") as f:
-                  json.dump(registry, f, indent=2)
-              print("registry.json regenerated:", len(agents), "agents")
-              changed = True
-
-          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
-              out.write(f"changed={'true' if changed else 'false'}\n")
+              print('registry.json updated')
+              with open(os.environ['GITHUB_OUTPUT'], 'a') as out:
+                  out.write('changed=true\n')
           PY
 
       - name: Commit and push updated registry
