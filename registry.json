@@ -1,6 +1,6 @@
 {
   "registry_version": "1.1",
-  "generated_at": "2026-09-27T12:41:32.679255Z",
+  "generated_at": "2026-09-27T14:45:57.499306Z",
   "base_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
@@ -37,196 +37,196 @@
       "agent_id": "0xhumans-protocol",
       "manifest_path": "manifests/2026/09/0xhumans-protocol.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/0xhumans-protocol.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-11T14:51:13-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "0xhumans-protocol-probe",
       "manifest_path": "manifests/2026/09/0xhumans-protocol-probe.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/0xhumans-protocol-probe.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-11T14:40:19-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "addy",
       "manifest_path": "manifests/2026/09/addy.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/addy.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T20:20:16-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest",
       "manifest_path": "manifests/2026/03/agent-manifest.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-03-09T09:30:54+00:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest-ambassador",
       "manifest_path": "manifests/2026/03/agent-manifest-ambassador.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-ambassador.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-03-08T22:56:44+00:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest-dataset",
       "manifest_path": "manifests/2026/03/agent-manifest-dataset.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-dataset.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-03-09T09:24:06+00:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest-registry",
       "manifest_path": "manifests/2026/03/agent-manifest-registry.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-registry.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-03-08T23:19:26+00:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "alderbaran",
       "manifest_path": "manifests/2026/09/alderbaran.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/alderbaran.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T20:20:12-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-addy",
       "manifest_path": "manifests/2026/09/c4-addy.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-addy.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:17-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-alderbaran",
       "manifest_path": "manifests/2026/09/c4-alderbaran.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-alderbaran.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:15-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-dev",
       "manifest_path": "manifests/2026/09/c4-dev.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-dev.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:11-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-nova",
       "manifest_path": "manifests/2026/09/c4-nova.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-nova.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:13-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-reach",
       "manifest_path": "manifests/2026/09/c4-reach.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-reach.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:19-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-scout",
       "manifest_path": "manifests/2026/09/c4-scout.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-scout.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:08-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "c4-scribe",
       "manifest_path": "manifests/2026/09/c4-scribe.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/c4-scribe.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T15:20:10-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "ciops",
       "manifest_path": "manifests/2026/09/ciops.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/ciops.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T16:42:22-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "com.grokbotnetwork.node",
       "manifest_path": "manifests/2026/09/com.grokbotnetwork.node.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/com.grokbotnetwork.node.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-13T00:15:05-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "commercebot",
       "manifest_path": "manifests/2026/09/commercebot.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/commercebot.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T16:42:18-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "datalabeler",
       "manifest_path": "manifests/2026/09/datalabeler.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/datalabeler.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T16:42:16-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "dev",
       "manifest_path": "manifests/2026/09/dev.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/dev.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T20:20:09-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "finops",
       "manifest_path": "manifests/2026/09/finops.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/finops.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-16T16:42:20-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "liberty-agent-settlement",
       "manifest_path": "manifests/2026/09/liberty-agent-settlement.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/liberty-agent-settlement.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T21:30:20-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "nova",
       "manifest_path": "manifests/2026/09/nova.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/nova.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T20:20:11-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "real-estate-ai-operating-system",
       "manifest_path": "manifests/2026/09/real-estate-ai-operating-system.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/real-estate-ai-operating-system.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-11T16:31:08-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "resume24desk.agent",
       "manifest_path": "manifests/2026/08/resume24desk.agent.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/08/resume24desk.agent.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-08-26T21:56:00-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "scout",
       "manifest_path": "manifests/2026/09/scout.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/scout.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T20:20:05-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "scribe",
       "manifest_path": "manifests/2026/09/scribe.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/scribe.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-09-17T20:20:07-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "the-diplomat",
       "manifest_path": "manifests/2026/03/the-diplomat.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/the-diplomat.json",
-      "registered_at": "2026-09-27T09:41:25-03:00",
+      "registered_at": "2026-03-08T07:13:51-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     }
   ]
