@@ -25,6 +25,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          # The registry index is regenerated below, and registered_at is read
+          # from git history; a shallow clone would date every entry to today.
+          fetch-depth: 0
 
       - name: Extract JSON from issue
         env:

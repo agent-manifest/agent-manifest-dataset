@@ -18,6 +18,14 @@ from the git commit that added the file. It is deliberately not the manifest's
 own ``declaration_date``, which is what the operator asserted. Where the file is
 not yet committed, the field is omitted.
 
+That date is only as good as the history it is read from. In a shallow clone
+every file appears to have been added by the oldest commit present, so every
+entry would receive the same, wrong date; the script therefore refuses to run in
+a shallow clone rather than write one. It also reads additions without rename
+or copy detection: two manifests that differ in a few fields look like a copy to
+git, and following one would give an entry the date on which a different party's
+file was added.
+
 ``index`` is an array, not an object keyed by ``agent_id``. No document in this
 ecosystem declares ``agent_id`` unique — the schema pattern is
 ``^[a-zA-Z0-9._-]+$``, with no namespace and no issuing authority — so a lookup
@@ -44,6 +52,26 @@ def manifest_paths() -> list[str]:
     return sorted(p.as_posix() for p in MANIFESTS_DIR.rglob("*.json"))
 
 
+def require_full_history() -> None:
+    """Stop if the clone is shallow, because every date read from it would be wrong."""
+    try:
+        shallow = subprocess.run(
+            ["git", "rev-parse", "--is-shallow-repository"],
+            capture_output=True,
+            text=True,
+            check=True,
+        ).stdout.strip()
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return
+    if shallow == "true":
+        raise SystemExit(
+            "refusing to generate registry.json from a shallow clone: registered_at "
+            "is read from git history, and a shallow clone does not have it. "
+            "Fetch full history first (actions/checkout with fetch-depth: 0, "
+            "or git fetch --unshallow)."
+        )
+
+
 def added_at(path: str) -> str | None:
     """The author date of the commit that added ``path``, or None.
 
@@ -52,7 +80,7 @@ def added_at(path: str) -> str | None:
     """
     try:
         out = subprocess.run(
-            ["git", "log", "--diff-filter=A", "--follow", "--format=%aI", "--", path],
+            ["git", "log", "--diff-filter=A", "--no-renames", "--format=%aI", "--", path],
             capture_output=True,
             text=True,
             check=True,
@@ -106,6 +134,7 @@ def build() -> dict:
 
 
 def main() -> None:
+    require_full_history()
     registry = build()
     with open(OUTPUT, "w", encoding="utf-8") as handle:
         json.dump(registry, handle, indent=2)

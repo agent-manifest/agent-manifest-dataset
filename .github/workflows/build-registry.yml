@@ -85,6 +85,9 @@ jobs:
         uses: actions/checkout@v4
         with:
           ref: main
+          # registered_at is read from git history; a shallow clone would give
+          # every entry the date of the one commit it contains.
+          fetch-depth: 0
 
       - name: Regenerate registry.json
         run: python3 scripts/generate-registry.py
