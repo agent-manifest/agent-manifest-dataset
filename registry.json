@@ -1,6 +1,6 @@
 {
   "registry_version": "1.1",
-  "generated_at": "2026-09-27T14:45:57.499306Z",
+  "generated_at": "2026-09-28T11:04:57.694306Z",
   "base_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
@@ -58,28 +58,28 @@
       "agent_id": "agent-manifest",
       "manifest_path": "manifests/2026/03/agent-manifest.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest.json",
-      "registered_at": "2026-03-09T09:30:54+00:00",
+      "registered_at": "2026-03-09T09:30:54Z",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest-ambassador",
       "manifest_path": "manifests/2026/03/agent-manifest-ambassador.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-ambassador.json",
-      "registered_at": "2026-03-08T22:56:44+00:00",
+      "registered_at": "2026-03-08T22:56:44Z",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest-dataset",
       "manifest_path": "manifests/2026/03/agent-manifest-dataset.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-dataset.json",
-      "registered_at": "2026-03-09T09:24:06+00:00",
+      "registered_at": "2026-03-09T09:24:06Z",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
       "agent_id": "agent-manifest-registry",
       "manifest_path": "manifests/2026/03/agent-manifest-registry.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/03/agent-manifest-registry.json",
-      "registered_at": "2026-03-08T23:19:26+00:00",
+      "registered_at": "2026-03-08T23:19:26Z",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
