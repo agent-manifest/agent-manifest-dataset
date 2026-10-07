@@ -1,0 +1,42 @@
+{
+  "$schema": "https://agent-manifest-spec.org/spec/v1.0/schema.json",
+  "manifest_version": "1.0",
+  "agent_id": "agent-exec",
+  "agent_name": "agent-exec",
+  "agent_version": "1.0.0",
+  "owner": {
+    "type": "organization",
+    "identifier": "agent-exec"
+  },
+  "purpose": {
+    "primary_code": "general.assistance",
+    "description": "Accountless, pay-per-call services for software agents: sandboxed code execution, storage, key claims, attestations, URL watches, disposable email, DNS, trust checks, free directory. Paid per call over x402 in USDC."
+  },
+  "forbidden_actions": [
+    "execute_irreversible_actions",
+    "access_private_data_without_consent"
+  ],
+  "autonomy": {
+    "level": 0
+  },
+  "risk_profile": {
+    "level": "low"
+  },
+  "data_handling": {
+    "stores_personal_data": false
+  },
+  "stopping_authority": {
+    "stoppable_by": [
+      "owner"
+    ],
+    "mechanism": "service can be taken offline by operator."
+  },
+  "audit_surface": {
+    "logging": "basic",
+    "reconstructability": "partial"
+  },
+  "contact": {
+    "email": "contact@agent-exec.448c.org",
+    "url": "https://agent-exec.448c.org"
+  }
+}
