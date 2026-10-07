@@ -1,6 +1,6 @@
 {
   "registry_version": "1.1",
-  "generated_at": "2026-09-28T11:04:57.694306Z",
+  "generated_at": "2026-10-07T11:42:30.320910Z",
   "base_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/",
   "agents": [
     "manifests/2026/03/agent-manifest-ambassador.json",
@@ -30,7 +30,8 @@
     "manifests/2026/09/nova.json",
     "manifests/2026/09/real-estate-ai-operating-system.json",
     "manifests/2026/09/scout.json",
-    "manifests/2026/09/scribe.json"
+    "manifests/2026/09/scribe.json",
+    "manifests/2026/10/agent-exec.json"
   ],
   "index": [
     {
@@ -52,6 +53,13 @@
       "manifest_path": "manifests/2026/09/addy.json",
       "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/09/addy.json",
       "registered_at": "2026-09-17T20:20:16-03:00",
+      "source": "https://github.com/agent-manifest/agent-manifest-dataset"
+    },
+    {
+      "agent_id": "agent-exec",
+      "manifest_path": "manifests/2026/10/agent-exec.json",
+      "manifest_url": "https://raw.githubusercontent.com/agent-manifest/agent-manifest-dataset/main/manifests/2026/10/agent-exec.json",
+      "registered_at": "2026-10-07T08:42:22-03:00",
       "source": "https://github.com/agent-manifest/agent-manifest-dataset"
     },
     {
