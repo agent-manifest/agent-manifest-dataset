@@ -88,16 +88,41 @@ jobs:
           echo "year=$(date +%Y)" >> $GITHUB_OUTPUT
           echo "month=$(date +%m)" >> $GITHUB_OUTPUT
 
+      # agent_id comes from the issue, so it never reaches a shell: it is read,
+      # normalised and written to the step output here, in Python. The name
+      # becomes a file name and is handed to later steps through env, never
+      # through an expression inside a script. The schema already limits agent_id to
+      # [a-zA-Z0-9._-]; the check below does not rely on that.
       - name: Get agent ID
         id: agent_id
         run: |
-          NAME=$(python3 -c "import json; print(json.load(open('manifest.json', encoding='utf-8'))['agent_id'])")
-          SAFE_NAME=$(echo "$NAME" | tr '[:upper:]' '[:lower:]' | sed 's/ /-/g')
-          echo "name=$SAFE_NAME" >> $GITHUB_OUTPUT
+          python3 <<'PY'
+          import json
+          import os
+          import re
+
+          with open("manifest.json", encoding="utf-8") as f:
+              agent_id = json.load(f)["agent_id"]
+
+          if not isinstance(agent_id, str) or not agent_id.isascii():
+              raise SystemExit("agent_id cannot be used as a file name.")
+
+          # Same normalisation as before: lower case, spaces to hyphens.
+          name = agent_id.lower().replace(" ", "-")
+
+          if not re.fullmatch(r"[a-z0-9._-]+", name):
+              raise SystemExit(f"agent_id {agent_id!r} cannot be used as a file name.")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"name={name}\n")
+          PY
 
       - name: Move manifest
+        env:
+          NAME: ${{ steps.agent_id.outputs.name }}
+          YEAR: ${{ steps.date.outputs.year }}
+          MONTH: ${{ steps.date.outputs.month }}
         run: |
-          NAME="${{ steps.agent_id.outputs.name }}"
           # The dataset is append-only: an agent_id may be registered once.
           EXISTING=$(find manifests -name "$NAME.json" -type f | head -1)
           if [ -n "$EXISTING" ]; then
@@ -105,26 +130,30 @@ jobs:
             echo "The dataset is append-only; resubmission does not replace an existing declaration."
             exit 1
           fi
-          mkdir -p manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}
-          mv manifest.json manifests/${{ steps.date.outputs.year }}/${{ steps.date.outputs.month }}/$NAME.json
+          mkdir -p "manifests/$YEAR/$MONTH"
+          mv manifest.json "manifests/$YEAR/$MONTH/$NAME.json"
 
       # The manifest is committed before the index is generated, so that
       # registered_at can be read from git history rather than from the clock.
       # It records what the registry did, and the commit is what it did.
       - name: Commit the manifest
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           git config user.name "manifest-bot"
           git config user.email "bot@agent-manifest.local"
           git add manifests
-          git commit -m "auto-register manifest from issue #${{ github.event.issue.number }}" || echo "No changes"
+          git commit -m "auto-register manifest from issue #$ISSUE_NUMBER" || echo "No changes"
 
       - name: Generate registry.json
         run: python3 scripts/generate-registry.py
 
       - name: Commit the registry index
+        env:
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
         run: |
           git add registry.json
-          git commit -m "regenerate registry index for issue #${{ github.event.issue.number }}" || echo "No changes"
+          git commit -m "regenerate registry index for issue #$ISSUE_NUMBER" || echo "No changes"
           git pull --rebase origin main
           git push
 
